@@ -1,0 +1,134 @@
+    
+
+<form class="border p-3 rounded-3" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && registrstionForm()">
+    <div class="row  g-0">
+        <div class="col text-center p-2 mb-3 bg-light">
+            <span class="fs-3">Registration Form</span>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="form.firstName" name="firstName"
+                #firstName="ngModel" required maxlength="35"
+                [ngClass]="{error : firstName.errors && firstName.touched}">
+            <div *ngIf="firstName.errors && firstName.touched">
+                <small class="text-danger" *ngIf="firstName.errors['required']">first name is required</small>
+             
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label for="middleName">Middle Name</label>
+            <input type="text" class="form-control" id="middleName" [(ngModel)]="form.middleName" name="middleName"
+                #middleName="ngModel" required maxlength="30"
+                [ngClass]="{error : middleName.errors && middleName.touched}">
+            <div *ngIf="middleName.errors && middleName.touched">
+                <small class="text-danger" *ngIf="middleName.errors['required']">middle name is required</small>
+               
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="form.lastName" name="lastName"
+                #lastName="ngModel" required maxlength="35" [ngClass]="{error : lastName.errors && lastName.touched}">
+            <div *ngIf="lastName.errors && lastName.touched">
+                <small class="text-danger" *ngIf="lastName.errors['required']">first name is required</small>
+                <small class="text-danger" *ngIf="lastName.errors['maxlength']">maximum 32 character is allowed</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="form.email" name="email" #email="ngModel"
+                required [pattern]="emailRegex" [ngClass]="{error : email.errors && email.touched}">
+            <div *ngIf="email.errors && email.touched">
+                <small class="text-danger" *ngIf="email.errors['required']">Email name is required</small>
+                <small class="text-danger" *ngIf="email.errors['pattern']">Please Enter Valid Email Address</small>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="number" class="form-control" id="mobileNumber" [(ngModel)]="form.mobileNumber"
+                name="mobileNumber" #mobileNumber="ngModel" maxlength="10" minlength="10" [pattern]="integeRegex"
+                required [ngClass]="{error : mobileNumber.errors && mobileNumber.touched}">
+            <div *ngIf="mobileNumber.errors && mobileNumber.touched">
+                <small class="text-danger" *ngIf="mobileNumber.errors['required']">Mobile Number Is Required</small>
+                <small class="text-danger" *ngIf="mobileNumber.errors['pattern']">Please Enter Valid Mobile
+                    Number</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="form.password" name="password"
+                #password="ngModel" minlength="8" maxlength="12" [pattern]="passwordRegex" required>
+            <div class="text-danger"
+                *ngIf="(password.touched || registerForm.submitted ) && password.errors?.['required']">Password is
+                required</div>
+
+            <div class="text-danger"
+                *ngIf="(password.touched || registerForm.submitted   ) && password.errors?.['pattern']">Password must be
+                8-12 character and should be contain letters, number , special symbol and capital letters</div>
+
+        </div>
+        <div class="col mb-3">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="form.confirmPassword"
+                name="confirmPassword" #confirmPassword="ngModel"
+                [ngClass]="{error : confirmPassword.errors && confirmPassword.touched}">
+            <div class="text-danger"
+                *ngIf="(confirmPassword.touched || registerForm.submitted ) && confirmPassword.errors?.['required']">confirm Password is required</div>
+
+            <div class="text-danger"
+                *ngIf="(confirmPassword.touched || registerForm.submitted) && form.password !==form.confirmPassword">
+                Password and confirm password should be same</div>
+
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country" [(ngModel)]="form.country" name="country"
+                    #country="ngModel" [ngClass]="{error : country.errors && country.touched}" required>
+                    <div *ngIf="country.errors && country.touched">
+                        <small class="text-danger" *ngIf="country.errors['required']">country is required</small>                    </div>
+            </div>
+            <div class="col mb-3">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" [(ngModel)]="form.city" name="city" #city="ngModel"
+                    [ngClass]="{error : city.errors && city.touched}" required>
+                    <div *ngIf="city.errors && city.touched">
+                        <small class="text-danger" *ngIf="city.errors['required']">city is required</small>
+                    </div>
+            </div>
+            <div class="col mb-3">
+                <label for="pinCode">Pin Code</label>
+                <input type="text" class="form-control" id="pinCode" [(ngModel)]="form.pinCode" name="pinCode"
+                    #pinCode="ngModel" [ngClass]="{error : pinCode.errors && pinCode.touched}" required maxlength="10"
+                    minlength="5">
+                    <div *ngIf="pinCode.errors && pinCode.touched">
+                        <small class="text-danger" *ngIf="pinCode.errors['required']">PinCode is required</small>
+                    </div>
+            </div>
+            <div class="col mb-3">
+                <label for="landMark">Landmark</label>
+                <input type="text" class="form-control" id="landMark" [(ngModel)]="form.landMark" name="landMark"
+                    #landMark="ngModel" [ngClass]="{error : landMark.errors && landMark.touched}" required>
+                    <div *ngIf="landMark.errors && landMark.touched">
+                        <small class="text-danger" *ngIf="landMark.errors['required']">landmark is required</small>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success"
+                    [disabled]="registerForm.form.status==='INVALID'">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</form>
