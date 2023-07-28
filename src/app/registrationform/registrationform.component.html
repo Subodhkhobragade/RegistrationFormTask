@@ -7,7 +7,9 @@
 
         </div>
     </div>
+    
     <div class="row">
+       
         <div class="col mb-3">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName" [(ngModel)]="form.firstName" name="firstName"
@@ -33,7 +35,7 @@
             <input type="text" class="form-control" id="lastName" [(ngModel)]="form.lastName" name="lastName"
                 #lastName="ngModel" required maxlength="35" [ngClass]="{error : lastName.errors && lastName.touched}">
             <div *ngIf="lastName.errors && lastName.touched">
-                <small class="text-danger" *ngIf="lastName.errors['required']">first name is required</small>
+                <small class="text-danger" *ngIf="lastName.errors['required']">last name is required</small>
                 <small class="text-danger" *ngIf="lastName.errors['maxlength']">maximum 32 character is allowed</small>
             </div>
         </div>
